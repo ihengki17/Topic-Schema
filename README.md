@@ -238,14 +238,38 @@ Question:
 
 ## <a name="step-8"></a>Schema Management
 
-1. Create new topic **schema_backward**
+1. Create new topic **<your_name>_schema_backward**
 
 2. Produce a data using kafka-avro-console-producer
+```bash
+kafka-avro-console-producer --bootstrap-server 10.0.32.58:9094 \
+--property schema.registry.url=https://10.0.32.58:8085 \
+--topic transactions-avro \
+--property value.schema='{"type":"record","name":"Transaction","fields":[{"name":"id","type":"string"},{"name": "amount", "type": "double"}]}' \
+--property schema.registry.ssl.truststore.location=/home/ec2-user/kafka.client.truststore.jks \
+--property schema.registry.ssl.truststore.password=confluent
+```
 
-3. Change the schema where it delete one of the fields
+send the data with the same data structure
+```bash
+{ "id":"1000", "amount":500 }
+```
 
-4. Produce again
+3. Change the schema where it add one of the fields
+```bash
+kafka-avro-console-producer --bootstrap-server 10.0.32.58:9094 \
+--property schema.registry.url=https://10.0.32.58:8085 \
+--topic transactions-avro \
+--property value.schema='{"type": "record","name": "Transaction","fields": [{"name": "id", "type": "string"},{"name": "amount", "type": "double"},{"name": "customer_id", "type": "string", "default":null}]}' \
+--property schema.registry.ssl.truststore.location=/home/ec2-user/kafka.client.truststore.jks \
+--property schema.registry.ssl.truststore.password=confluent
+```
+send the new data with additional data structure
+```bash
+{ "id":"1001", "amount":500, "customer_id":"1221" }
+```
 
 Question:
 - How to make it compatible for every changes?
+- Why backward still could handle the additional fields?
 - What is the impact to make it loose in transitive version?
