@@ -1,5 +1,5 @@
 <div align="center" padding=25px>
-    <img src="images/confluent.png" width=50% height=50%>
+    <img src="img/confluent.png" width=50% height=50%>
 </div>
 
 # <div align="center">Topic and Schema on Kafka</div>
