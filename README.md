@@ -226,7 +226,10 @@ kafka-console-producer --bootstrap-server 10.0.32.58:9094 --topic <your_name>_cu
 ```
 and clean-up the data same as the answer on point-5 for Log Segment
 
-5. Create new topic for compact **<your_name>_cup_compact** with the best availability replica placement constraint
+5. Create new topic for compact **<your_name>_cup_compact** with the best availability replica placement constraint with cleanup policy as Compact
+<div align="center" padding=25px>
+    <img src="img/cup2.png" width=75% height=75%>
+</div>
 
 6. Produce the data using C3 with key and value data (create few unique key and value pair and some same key with different value payload)
 
