@@ -75,6 +75,35 @@ superUser:superUser
     <img src="img/rf2-3.png" width=75% height=75%>
 </div>
 
+```bash
+{
+    "version": 2,
+    "replicas": [
+        {
+            "count": 1,
+            "constraints": {
+                "rack": "r1"
+            }
+        },
+        {
+            "count": 1,
+            "constraints": {
+                "rack": "r2"
+            }
+        }
+    ],
+    "observers": [
+        {
+            "count": 1,
+            "constraints": {
+                "rack": "r3"
+            }
+        }
+    ],
+    "observerPromotionPolicy":"under-min-isr"
+}
+```
+
 7. Click the new topic name and see the overview
 <div align="center" padding=25px>
     <img src="img/rf4.png" width=75% height=75%>
